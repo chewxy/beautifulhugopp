@@ -64,6 +64,19 @@ var main = {
 
     // show the big header image  
     main.initImgs();
+
+    // initialize footnotes
+    $(
+      function() {
+        $(".refbody").hide();
+        $(".refnum").click(function(event) {
+          $(this.nextSibling).toggle();
+          event.stopPropagation();
+        });
+        $("body").click(function(event) {
+          $(".refbody").hide();
+        });
+    });
   },
   
   initImgs : function() {
@@ -131,6 +144,7 @@ var main = {
     $(".img-desc").hide();  
   }
   }
+
 };
 
 // 2fc73a3a967e97599c9763d05e564189

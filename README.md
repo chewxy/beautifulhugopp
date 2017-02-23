@@ -1,6 +1,6 @@
-# Beautiful Hugo - A port of Beautiful Jekyll Theme
+# Beautiful Hugo Plus Plus - A variant of Beautiful Hugo by Halogenica.
 
-![Beautiful Hugo Theme Screenshot](https://github.com/halogenica/beautifulhugo/blob/master/images/screenshot.png)
+![Beautiful Hugo Theme Screenshot](https://github.com/halogenica/beautifulhugopp/blob/master/images/screenshot.png)
 
 ## Installation
 
@@ -57,6 +57,18 @@ This can be achieved by running the next command prior to calling Hugo:
 ```
   
 See at [xor-gate/xor-gate.org](https://github.com/xor-gate/xor-gate.org) an example of how to add it to a continuous integration system.
+
+###Inline Reference/Footnotes Shortcode###
+
+If you want to use inline references that pop up, the shortcode to use is 
+
+```
+{{<footnotes "*" >}}YOUR FOOTNOTES HERE {{</footnotes>}}
+```
+
+###Conditional MathJax Loading###
+
+If you've got LaTeX in your post, and you want to display it, you can add `latex: true` to your front matter
   
 ## About
 
