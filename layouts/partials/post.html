@@ -1,6 +1,19 @@
 <div class="container">
   <div class="row">
+    {{if .Params.toc}}
+    <!-- <div class="clearfix toc col-xs-4 col- col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-6"> -->
+    <div class="toc col-xs-4">
+      <aside>
+        <h1>Table of Contents</h1>
+        (Reading Time: {{.ReadingTime}} mins)
+        {{ .TableOfContents }}
+      </aside>
+    </div>
+    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
+    {{else}}
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    {{end}}
+      
       <article role="main" class="blog-post">
           {{ .Content }}
       </article>
