@@ -787,6 +787,6 @@ code.has-jax {font: inherit;
 @media (max-width: 768px) {
   .toc {
     position: static;
-    display: block;
+    display: none;
   }
 }
