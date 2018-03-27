@@ -1,6 +1,9 @@
+
 # Beautiful Hugo Plus Plus - A variant of Beautiful Hugo by Halogenica.
 
 ![Beautiful Hugo Theme Screenshot](https://github.com/halogenica/beautifulhugopp/blob/master/images/screenshot.png)
+
+
 
 ## Installation
 
@@ -18,24 +21,88 @@ This theme is designed to look great on both large-screen and small-screen (mobi
 
 ### Syntax highlighting
 
-This theme has support for both server side and client side highlighting.
+This theme has support for either Hugo's lightning fast Chroma, or both server side and client side highlighting. See [the Hugo docs for more](https://gohugo.io/content-management/syntax-highlighting/).
 
-#### Server side syntax highlighting
+#### Chroma - New server side syntax highlighting
 
-Use the `highlight` shortcode (with Pygments),
-see [the Hugo documentation](http://gohugo.io/extras/highlighting/) for more information.
+To enable Chroma, add the following to your site parameters:
 
-To use this feature install Pygments (`pip install Pygments`) and add `pygmentsuseclasses = true` to your `config.toml`.
+```
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+```
 
-#### Client side syntax highlighting
+Then, you can generate a different style by running:
 
-Use triple backticks ( ``` ) or triple tilde ( ~~~ ) around code blocks.
+```
+hugo gen chromastyles --style=trac > static/css/syntax.css
+```
 
-Client side highlighting does not require pygments to be installed.
+#### Pygments - Old server side syntax highlighting
+
+To use this feature install Pygments (`pip install Pygments`) and add the following to your site parameters:
+
+```
+pygmentsStyle = "trac"
+pygmentsUseClassic = true
+```
+
+Pygments is mostly compatable with the newer Chroma. It is slower but has some additional theme options. I recommend Chroma over Pygments.
+
+#### Highlight.js - Client side syntax highlighting
+
+[Params]
+    useHLJS = true
+
+Client side highlighting does not require pygments to be installed. This will use `highlight.min.css` instead of `syntax.css` for highlighting (effectively disabling Chroma). Highlight.js has a wider range of support for languages and themes, and an alternative highlighting engine.
+
 
 ### Disqus support
 
 To use this feature, uncomment and fill out the `disqusShortname` parameter in `config.toml`.
+
+
+### Staticman support
+
+Add *staticman* configuration section in `config.toml` or `config.yaml`
+
+Sample `config.yaml` configuration
+
+```
+  staticman:
+    api: https://api.staticman.net/v2/entry/<USERNAME>/<REPOSITORY-BLOGNAME>/master/comments
+    pulls: https://github.com/<USERNAME>/<REPOSITORY-BLOGNAME>/pulls
+    recaptcha:
+      sitekey: "6LeGeTgUAAAAAAqVrfTwox1kJQFdWl-mLzKasV0v"
+      secret: "hsGjWtWHR4HK4pT7cUsWTArJdZDxxE2pkdg/ArwCguqYQrhuubjj3RS9C5qa8xu4cx/Y9EwHwAMEeXPCZbLR9eW1K9LshissvNcYFfC/b8KKb4deH4V1+oqJEk/JcoK6jp6Rr2nZV4rjDP9M7nunC3WR5UGwMIYb8kKhur9pAic="
+```
+
+You must also configure the `staticman.yml` in you blog website.
+
+```
+comments:
+  allowedFields: ["name", "email", "website", "comment"]
+  branch            : "master"
+  commitMessage     : "New comment in {options.slug}"
+  path: "data/comments/{options.slug}"
+  filename          : "comment-{@timestamp}"
+  format            : "yaml"
+  moderation        : true
+  requiredFields    : ['name', 'email', 'comment']
+  transforms:
+    email           : md5
+  generatedFields:
+    date:
+      type          : "date"
+      options:
+        format      : "iso8601"
+  reCaptcha:
+    enabled: true
+    siteKey: "6LeGeTgUAAAAAAqVrfTwox1kJQFdWl-mLzKasV0v"
+    secret: "hsGjWtWHR4HK4pT7cUsWTArJdZDxxE2pkdg/ArwCguqYQrhuubjj3RS9C5qa8xu4cx/Y9EwHwAMEeXPCZbLR9eW1K9LshissvNcYFfC/b8KKb4deH4V1+oqJEk/JcoK6jp6Rr2nZV4rjDP9M7nunC3WR5UGwMIYb8kKhur9pAic="
+```
+
+
 
 ### Google Analytics
 
@@ -57,6 +124,7 @@ This can be achieved by running the next command prior to calling Hugo:
 ```
   
 See at [xor-gate/xor-gate.org](https://github.com/xor-gate/xor-gate.org) an example of how to add it to a continuous integration system.
+<<<<<<< HEAD
 
 ###Inline Reference/Footnotes Shortcode###
 
@@ -69,6 +137,7 @@ If you want to use inline references that pop up, the shortcode to use is
 ###Conditional MathJax Loading###
 
 If you've got LaTeX in your post, and you want to display it, you can add `latex: true` to your front matter
+
   
 ## About
 
