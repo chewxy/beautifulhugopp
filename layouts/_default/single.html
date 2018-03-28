@@ -21,6 +21,9 @@
         </ul>
       {{ end }}
 
+{{if .Params.latex}}
+  {{ partial "latex.html" .}}
+{{end}}
 
       {{ if (.Params.comments) | or (and (or (not (isset .Params "comments")) (eq .Params.comments nil)) (and .Site.Params.comments (ne .Type "page"))) }}
         {{ if .Site.DisqusShortname }}
@@ -38,4 +41,5 @@
     </div>
   </div>
 </div>
+
 {{ end }}

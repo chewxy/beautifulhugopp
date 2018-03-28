@@ -7,6 +7,9 @@
         {{ template "_internal/disqus.html" . }}
         </div>
       {{ end }}
+      {{if .Params.latex}}
+        {{ partial "latex.html" .}}
+      {{end}}
     </div>
   </div>
 </div>
